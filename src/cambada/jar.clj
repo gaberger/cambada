@@ -191,7 +191,7 @@
   [^Reader rdr]
   (let [roots (tree/seq-tree event/event-element event/event-exit? event/event-node
                              (xml/event-seq rdr {:include-node? #{:element :characters :comment}}))]
-    (first (filter #(instance? Element %) (first roots)))))
+    (first (first roots))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -228,7 +228,7 @@
               (-> rdr
                   parse-xml
                   (replace-header task)))]
-    (spit pom-file (xml/indent-str pom))))
+    (spit pom-file (xml/emit-str pom))))
 
 (defn apply! [{:keys [deps-map] :as task}]
   (compile/apply! task)
