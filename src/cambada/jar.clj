@@ -228,7 +228,7 @@
               (-> rdr
                   parse-xml
                   (replace-header task)))]
-    (spit pom-file (xml/emit-str pom))))
+    (spit pom-file (xml/indent-str pom))))
 
 (defn apply! [{:keys [deps-map] :as task}]
   (compile/apply! task)
